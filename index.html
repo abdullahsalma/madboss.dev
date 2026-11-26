@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>madboss.dev — coming soon</title>
-<meta name="description" content="Something is compiling at madboss.dev. Check back soon.">
+<title>madboss.dev</title>
+<meta name="description" content="Something is compiling at madboss.dev.">
 <meta name="theme-color" content="#08050f">
 <meta name="color-scheme" content="dark">
 <link rel="canonical" href="https://madboss.dev/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://madboss.dev/">
-<meta property="og:title" content="madboss.dev — coming soon">
-<meta property="og:description" content="Something is compiling. Check back soon.">
+<meta property="og:title" content="madboss.dev">
+<meta property="og:description" content="Something is compiling.">
 <meta name="twitter:card" content="summary">
 <style>
   :root {
@@ -218,9 +218,9 @@
   </header>
 
   <main>
-    <p class="eyebrow">// coming soon</p>
+    <p class="eyebrow">// hello, world</p>
     <h1 id="title" aria-label="madboss.dev"><span class="grad">madboss</span><span class="tld">.dev</span><span class="caret" aria-hidden="true"></span></h1>
-    <p class="lede">Something is <b>compiling</b> in here.<br>Check back soon.</p>
+    <p class="lede">Something is <b>compiling</b> in here.</p>
 
     <section class="term" aria-label="Interactive terminal">
       <div class="term-bar" aria-hidden="true"><i></i><i></i><i></i><span>visitor@madboss: ~</span></div>
@@ -282,7 +282,7 @@
       '  <b>clear</b>         clean slate'
     ].join('\n'),
     whoami: () => 'visitor: early, curious, and very welcome.',
-    status: () => `<span class="run">[ .. ]</span> building the thing <span class="bar">${bar(72)}</span> 72%\n<span class="warn">[wait]</span> eta: soon™`,
+    status: () => `<span class="run">[ .. ]</span> building the thing <span class="bar">${bar(72)}</span> 72%\n<span class="warn">[wait]</span> eta: when it’s ready`,
     ls: () => Object.keys(files).map(f => `<span class="f">${f}</span>`).join('    '),
     cat: a => {
       if (!a) return 'usage: cat &lt;file&gt;';
@@ -302,7 +302,7 @@
     hi: () => 'hey there 👋',
     pwd: () => '/home/visitor',
     cd: () => 'you are exactly where you need to be.',
-    madboss: () => 'that’s the name. the game is coming soon.'
+    madboss: () => 'that’s the name.'
   };
   const visible = ['help', 'whoami', 'status', 'ls', 'cat', 'echo', 'date', 'coffee', 'clear'];
 
@@ -377,7 +377,7 @@
     const pb = p.querySelector('.bar'), pp = p.querySelector('.pct');
     for (let i = 0; i <= 72; i += 3) { pb.textContent = bar(i); pp.textContent = i + '%'; await sleep(45); }
     await sleep(300);
-    line('<span class="warn">[wait]</span> eta: soon™');
+    line('<span class="warn">[wait]</span> eta: when it’s ready');
     line('');
     line('<span class="hint muted">type <b>help</b> to look around.</span>');
     form.hidden = false;
