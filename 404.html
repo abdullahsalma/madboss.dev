@@ -3,49 +3,56 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>404 — madboss.dev</title>
+<title>404: sector not found · madboss.dev</title>
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#08050f">
+<meta name="theme-color" content="#050208">
 <meta name="color-scheme" content="dark">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <style>
+  :root { --ph: #d8b4fe; --ph2: #f0abfc; --mono: "Cascadia Mono", "Consolas", ui-monospace, "SF Mono", Menlo, monospace; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    min-height: 100vh; min-height: 100svh;
-    display: grid; place-items: center; padding: 24px;
-    background: radial-gradient(60vmax 60vmax at 20% 0%, rgba(109, 40, 217, .55), transparent 60%),
-                radial-gradient(50vmax 50vmax at 100% 60%, rgba(192, 38, 211, .3), transparent 60%),
-                #08050f;
-    color: #efe9ff;
-    font: 15px/1.6 ui-monospace, "JetBrains Mono", "Cascadia Code", "SF Mono", Menlo, Consolas, monospace;
+  html, body { height: 100%; }
+  body { min-height: 100svh; background: #050208; display: grid; place-items: center; padding: clamp(8px, 2.5vw, 34px); }
+  .bezel { width: min(900px, 100%); padding: clamp(10px, 1.6vw, 22px); border-radius: 28px; background: linear-gradient(160deg, #1a1426, #0c0912); box-shadow: 0 0 0 1px #261d36, 0 40px 120px -30px rgba(109, 40, 217, .55); }
+  .screen {
+    position: relative; overflow: hidden; border-radius: 22px / 26px; padding: clamp(22px, 4vw, 48px);
+    background: radial-gradient(ellipse at center, #1b0b2e 0%, #10061c 60%, #07030c 100%);
+    box-shadow: inset 0 0 120px rgba(0, 0, 0, .9), inset 0 0 30px rgba(168, 85, 247, .2);
+    font: clamp(13px, 1.6vw, 17px)/1.6 var(--mono); color: var(--ph); text-shadow: 0 0 6px rgba(216, 180, 254, .75), 0 0 18px rgba(168, 85, 247, .45);
   }
-  .box { width: 100%; max-width: 560px; }
-  h1 {
-    font-size: clamp(4.5rem, 22vw, 9rem); line-height: 1; font-weight: 800; letter-spacing: -.06em;
-    background: linear-gradient(100deg, #f6f2ff, #a855f7 60%, #e879f9);
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-  }
-  pre {
-    margin: 18px 0 26px; padding: 16px; white-space: pre-wrap; word-break: break-word;
-    border: 1px solid rgba(167, 139, 250, .18); border-radius: 12px; background: rgba(14, 8, 28, .72);
-    font: inherit;
-  }
-  .u { color: #e879f9; } .p { color: #8b5cf6; } .e { color: #f9a8d4; }
-  a {
-    display: inline-block; padding: 10px 16px; border-radius: 10px;
-    color: #fff; text-decoration: none; font-weight: 600;
-    background: linear-gradient(100deg, #7c3aed, #c026d3);
-  }
-  a:focus-visible { outline: 2px solid #e879f9; outline-offset: 3px; }
+  .screen::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: repeating-linear-gradient(to bottom, rgba(0, 0, 0, .32) 0 2px, transparent 2px 4px); }
+  .big { font-size: clamp(40px, 9vw, 92px); line-height: 1; color: var(--ph2); margin: 10px 0 18px; text-shadow: 0 0 10px rgba(240, 171, 252, .9), 0 0 30px rgba(168, 85, 247, .6); }
+  .dim { color: #8f6bbf; }
+  .opts { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 10px 18px; }
+  .opts a { color: var(--ph2); text-decoration: none; }
+  .opts a:hover, .opts a:focus-visible { background: var(--ph2); color: #14051f; text-shadow: none; outline: none; }
+  #msg { margin-top: 16px; min-height: 1.6em; }
+  .cur { display: inline-block; width: .6em; height: 1.05em; vertical-align: -.15em; background: var(--ph2); animation: blink 1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
 </style>
 </head>
 <body>
-  <div class="box">
-    <h1>404</h1>
-    <pre><span class="u">visitor@madboss</span>:<span class="p">~</span>$ cd <span id="path">/somewhere</span>
-<span class="e">cd: no such file or directory</span></pre>
-    <a href="/">cd ~</a>
-  </div>
-<script>document.getElementById('path').textContent = location.pathname;</script>
+  <div class="bezel"><div class="screen">
+    <div class="dim">MADBOSS BIOS v0.1</div>
+    <div class="big">ERROR 404</div>
+    <div>SECTOR NOT FOUND: <span id="path">/</span></div>
+    <div class="dim">the file you asked for is not on this disk.</div>
+    <div class="opts"><a href="#" id="r">[R]etry</a><a href="/" id="a">[A]bort</a><a href="/" id="f">[F]ail</a></div>
+    <div id="msg"><span class="cur"></span></div>
+  </div></div>
+<script>
+  document.getElementById('path').textContent = location.pathname;
+  const msg = document.getElementById('msg');
+  const go = (text, href) => { msg.textContent = text; setTimeout(() => { location.href = href; }, 900); };
+  document.getElementById('r').addEventListener('click', e => { e.preventDefault(); msg.textContent = 'retrying... still not here.'; setTimeout(() => location.reload(), 900); });
+  document.getElementById('a').addEventListener('click', e => { e.preventDefault(); go('aborting. returning to home sector.', '/'); });
+  document.getElementById('f').addEventListener('click', e => { e.preventDefault(); go('fail acknowledged. going home anyway.', '/'); });
+  addEventListener('keydown', e => {
+    const k = e.key.toLowerCase();
+    if (k === 'r') document.getElementById('r').click();
+    if (k === 'a') document.getElementById('a').click();
+    if (k === 'f') document.getElementById('f').click();
+  });
+</script>
 </body>
 </html>
